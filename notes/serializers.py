@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from notes.models import Note
+from notes.models import Note, User
 
 
 # class NoteSerializer(serializers.Serializer):
@@ -19,7 +19,14 @@ from notes.models import Note
 #         instance.save()
 #         return instance
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'nickname', 'email']
+
+
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ['id', 'title', 'content']
+        fields = ['id', 'created_by', 'title', 'content']
+
